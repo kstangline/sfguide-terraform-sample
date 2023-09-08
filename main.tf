@@ -23,35 +23,35 @@ provider "snowflake" {
 }
 
 # Create new user
-resource "snowflake_user" "example_user" {
-  name = "example_user"
+resource "snowflake_user" "example_user1" {
+  name = "example_user1"
   comment = "Example user"
 }
 
 # Create new role
-resource "snowflake_role" "example_role" {
-  name = "example_role"
+resource "snowflake_role" "example_role1" {
+  name = "example_role1"
   comment = "Example role"
 }
 
 # Create new database
-resource "snowflake_database" "example_database" {
-  name = "example_database"
+resource "snowflake_database" "example_database1" {
+  name = "example_database1"
   comment = "Example database"
 }
 
 # Create new database schema
-resource "snowflake_schema" "example_schema" {
-  name       = "example_schema"
-  database   = snowflake_database.example_database.name
+resource "snowflake_schema" "example_schema1" {
+  name       = "example_schema1"
+  database   = snowflake_database.example_database1.name
   comment    = "Example schema"
 }
 
 # Assign role to example_user
-resource "snowflake_role_grants" "example_role_to_user" {
-  role_name = snowflake_role.example_role.name
+resource "snowflake_role_grants" "example_role_to_user1" {
+  role_name = snowflake_role.example_role1.name
   
   users = [
-    snowflake_user.example_user.name
+    snowflake_user.example_user1.name
   ]
 }

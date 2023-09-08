@@ -47,6 +47,20 @@ This Terraform configuration sets up basic resources in Snowflake, including a u
     terraform apply
     ```
 
+## Versioning and Incremental Changes
+
+### Versioning
+This repository uses semantic versioning. Each version is tagged with a git tag corresponding to its version number. For example, version `1.0.0` would be tagged as `v1.0.0`.
+
+### Incremental Changes
+Changes to the infrastructure are made incrementally. Each change is reviewed as a pull request, and upon approval, the changes are applied using `terraform apply`.
+
+- **Development Environment**: Changes are first applied to a development environment for testing.
+- **Staging and Production**: After successful testing, changes are promoted to staging and then to production.
+
+### Rollbacks
+In case of errors, the previous version of the infrastructure can be rolled back by checking out the corresponding git tag and running `terraform apply`.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
