@@ -204,7 +204,7 @@ jobs:
 
     # Determine environment based on the branch name
     env:
-      TF_ENV: ${{ github.ref == 'refs/heads/main' && 'prod' || (github.ref == 'refs/heads/development' && 'dev') || 'refs/heads/qa' && 'qa' }}
+      TF_ENV: ${{ github.ref == 'refs/heads/main' && 'prod' || (github.ref == 'refs/heads/development' && 'dev') || (github.ref == 'refs/heads/qa' && 'qa') }}
 
     # List of steps to execute
     steps:
