@@ -8,12 +8,18 @@ terraform {
   }
 }
 
+# Declare a variable for the Snowflake password
+variable "snowflake_password" {
+  description = "The Snowflake password"
+  sensitive   = true
+}
+
 # Login information
 provider "snowflake" {
   account  = "lgsuydq-xe04196"
   username = "kstangline"
   role     = "ACCOUNTADMIN"
-  password = "Snowflake123!"
+  password = var.snowflake_password
 }
 
 # Create new user
