@@ -72,6 +72,7 @@ resource "snowflake_database" "new_database" {
   name    = "new_database"
   comment = "This is a new database"
 }
+```
 
 ## Implementing CI/CD
 
@@ -106,6 +107,7 @@ on:
     # Only for pushes to these branches
     branches:
       - main        # main branch
+      - qa          # staging branch
       - development # development branch
 
 # Define the jobs to be run
@@ -142,7 +144,6 @@ jobs:
         run: terraform apply -auto-approve
 
 ```
-
 
 ## Environment-Specific Deployments and CI/CD
 
@@ -191,8 +192,8 @@ on:
   push:
     branches:
       - main
-      - development
       - qa
+      - development
 
 # Define the jobs to be executed
 jobs:
@@ -203,7 +204,7 @@ jobs:
 
     # Determine environment based on the branch name
     env:
-      TF_ENV: ${{ github.ref == 'refs/heads/main' && 'prod' || (github.ref == 'refs/heads/development' && 'dev') || 'qa' }}
+      TF_ENV: ${{ github.ref == 'refs/heads/main' && 'prod' || (github.ref == 'refs/heads/development' && 'dev') || 'refs/heads/qa' && 'qa' }}
 
     # List of steps to execute
     steps:
@@ -266,8 +267,6 @@ jobs:
 1. **Cloud Provider Logs**: Use your cloud provider's audit logging features to keep track of actions taken on your infrastructure.
 
 2. **Third-Party Tools**: Consider third-party logging and monitoring solutions for additional auditing capabilities.
-
-By following these guidelines, you can maintain a robust, secure, and well-documented infrastructure codebase.
 
 
 ## License
